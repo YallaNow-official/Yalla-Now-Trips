@@ -121,7 +121,7 @@ export const HELP_LINKS = {
 export const SOCIAL_LINKS = [
     {
         title: 'WhatsApp',
-        href: 'https://api.whatsapp.com/send?phone=01011823889',
+        href: 'https://api.whatsapp.com/send?phone=201011823889',
         icon: Icons.Whatsapp,
     },
     {
