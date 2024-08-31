@@ -11,21 +11,21 @@ import { Langdropdown } from './lang-dropdown'
 
 export const NavBar = () => {
     const { user, logout, isLoggingOut } = useUser()
-    const { i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
 
     return (
         <nav
-            className='sticky top-0 z-50 flex h-24 w-full items-center justify-center bg-background shadow-nav'
+            className='sticky top-0 z-50 flex items-center justify-center w-full h-24 bg-background shadow-nav'
             dir={i18n.dir()}
         >
-            <ul className='container flex w-full items-center justify-between gap-4 xl:gap-8'>
+            <ul className='container flex items-center justify-between w-full gap-4 xl:gap-8'>
                 <li>
                     <Link to='/'>
                         <img src={MainLogo} alt='Main logo' />
                     </Link>
                 </li>
 
-                <ul className='hidden items-center justify-center gap-4 xl:flex xl:gap-8'>
+                <ul className='items-center justify-center hidden gap-4 xl:flex xl:gap-8'>
                     {NAV_LINKS[i18n.language as 'en' | 'ar'].map((link) => (
                         <NavItem
                             key={link.href}
@@ -48,7 +48,7 @@ export const NavBar = () => {
                                     variant: 'primary',
                                 })}
                             >
-                                Sign in
+                                {t('auth.sign_in_small')}
                             </Link>
                         </li>
                     ) : (
