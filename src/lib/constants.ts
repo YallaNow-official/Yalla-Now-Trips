@@ -121,7 +121,7 @@ export const HELP_LINKS = {
 export const SOCIAL_LINKS = [
     {
         title: 'WhatsApp',
-        href: 'https://whatsapp.com',
+        href: 'https://api.whatsapp.com/send?phone=01011823889',
         icon: Icons.Whatsapp,
     },
     {
@@ -136,7 +136,7 @@ export const SOCIAL_LINKS = [
     },
     {
         title: 'LinkedIn',
-        href: 'https://linkedin.com',
+        href: 'http://www.linkedin.com/in/yalla-now-apps-636b17323',
         icon: Icons.Linkedin,
     },
 ]
