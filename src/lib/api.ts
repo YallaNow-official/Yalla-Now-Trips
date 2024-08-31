@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'https://yallanowtripss.runasp.net/api',  // Updated base URL
+    baseURL: 'https://yallanowtripss.runasp.net',  // Updated base URL
 });
 
 api.interceptors.request.use((config) => {
