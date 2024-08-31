@@ -5,7 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": "https://yallanowtripss.runasp.net",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
