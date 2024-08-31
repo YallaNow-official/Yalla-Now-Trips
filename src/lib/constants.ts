@@ -126,12 +126,12 @@ export const SOCIAL_LINKS = [
     },
     {
         title: 'Facebook',
-        href: 'https://www.facebook.com/profile.php?id=61559191288373&mibextid=JRoKGi',
+        href: 'https://www.facebook.com/profile.php?id=61559833705562&mibextid=ZbWKwL',
         icon: Icons.Facebook,
     },
     {
         title: 'Instagram',
-        href: 'https://www.instagram.com/yallanowofficial/?igsh=ZnhqMjNsbHVoc29y',
+        href: 'https://www.instagram.com/yallanowtrips?igsh=MTFhMHN0bG5rZjg4',
         icon: Icons.Instagram,
     },
     {
