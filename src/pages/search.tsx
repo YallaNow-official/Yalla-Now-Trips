@@ -34,8 +34,6 @@ export const Search = () => {
     )
     const { page, setSearchParams } = useCustomSearchParams()
 
-    console.log(page)
-
     const { data: trips, isLoading: loadingTrips } = useQuery<SearchType>({
         queryKey: ['trips', 'search', page, place, checkInDate],
         queryFn: async () => {

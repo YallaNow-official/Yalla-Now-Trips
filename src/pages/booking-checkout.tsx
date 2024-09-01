@@ -73,8 +73,6 @@ export const BookingCheckout = () => {
 
     const nationality = form.watch('nationality')
 
-    console.log(nationality)
-
     const { data: nationalities } = useQuery<Nationality[]>({
         queryKey: ['nationalities'],
         queryFn: async () => {
