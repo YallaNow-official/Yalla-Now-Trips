@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
 import { bookingSchema, type BookingSchema } from '@/lib/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { TripDetailsType } from '@/types'
+import { Nationality, TripDetailsType } from '@/types'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { NotFound } from './not-found'
@@ -31,6 +31,7 @@ import { isAxiosError } from 'axios'
 import { useUser } from '@/components/providers/user-provider'
 import { ButtonLoading } from '@/components/ui/button-loading'
 import { useTranslation } from 'react-i18next'
+import { CustomSelect } from '@/components/custom-select'
 
 export const BookingCheckout = () => {
     const { id } = useParams<{ id: string }>()
@@ -67,6 +68,17 @@ export const BookingCheckout = () => {
             numberOfAdults: 0,
             numberOfKids: 0,
             numberOfJuniors: 0,
+        },
+    })
+
+    const nationality = form.watch('nationality')
+
+    console.log(nationality)
+
+    const { data: nationalities } = useQuery<Nationality[]>({
+        queryKey: ['nationalities'],
+        queryFn: async () => {
+            return (await api.get('/api/Nationalities')).data
         },
     })
 
@@ -240,12 +252,22 @@ export const BookingCheckout = () => {
                                                     )}
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <Input
-                                                        className='rounded-xs border-light-gray'
+                                                    <CustomSelect
+                                                        onChange={
+                                                            field.onChange
+                                                        }
+                                                        value={nationality}
+                                                        defaultValue={
+                                                            field.value
+                                                        }
                                                         placeholder={t(
                                                             'form.placeholder_nationality',
                                                         )}
-                                                        {...field}
+                                                        options={
+                                                            nationalities?.map(
+                                                                (n) => n.name,
+                                                            ) ?? []
+                                                        }
                                                     />
                                                 </FormControl>
                                                 <FormMessage />

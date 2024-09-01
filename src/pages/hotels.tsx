@@ -101,7 +101,7 @@ export const Hotels = () => {
 
     return (
         <main className='relative' dir={i18n.dir()}>
-            <div className='container absolute h-full pt-4 pb-20 -translate-x-1/2 left-1/2 max-h-96'>
+            <div className='container absolute left-1/2 h-full max-h-96 -translate-x-1/2 pb-20 pt-4'>
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -131,7 +131,7 @@ export const Hotels = () => {
                     </BreadcrumbList>
                 </Breadcrumb>
 
-                <div className='flex flex-col justify-center h-full'>
+                <div className='flex h-full flex-col justify-center'>
                     <h1 className='text-[2rem] font-bold leading-normal text-white'>
                         {t('hotels.banner_title')}
                     </h1>
@@ -143,17 +143,17 @@ export const Hotels = () => {
             </div>
 
             <img
-                className='object-cover w-full h-96'
+                className='h-96 w-full object-cover'
                 src='/banners/hotel.png'
                 alt='Hotels'
             />
 
-            <div className='container pt-12 space-y-6 pb-28'>
+            <div className='container space-y-6 pb-28 pt-12'>
                 <div className='space-y-4'>
                     <h2 className='text-[2rem] font-semibold text-gray-900'>
                         {t('hotels.title')}
                     </h2>
-                    <p className='max-w-screen-md text-gray-600 text-balance'>
+                    <p className='max-w-screen-md text-balance text-gray-600'>
                         {t('common.contact_soon')}
                     </p>
                 </div>
@@ -353,7 +353,7 @@ export const Hotels = () => {
                         />
                         <ButtonLoading
                             type='submit'
-                            className='px-8 mt-3 rounded-sm h-14 w-fit bg-primary-orange'
+                            className='mt-3 h-14 w-fit rounded-sm bg-primary-orange px-8'
                             isLoading={isPending}
                         >
                             <span className='text-base font-bold uppercase tracking-[0.012em] text-white'>
