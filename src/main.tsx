@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'sonner'
 import { UserProvider } from './components/providers/user-provider.tsx'
 import './lib/i18n.ts'
+import { ScrollToTop } from './components/scroll-to-top.tsx'
 
 const Main = () => {
     const queryClient = new QueryClient()
@@ -15,6 +16,7 @@ const Main = () => {
         <StrictMode>
             <QueryClientProvider client={queryClient}>
                 <Router>
+                    <ScrollToTop />
                     <UserProvider>
                         <App />
                         <Toaster />

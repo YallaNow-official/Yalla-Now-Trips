@@ -23,7 +23,7 @@ import { FilterSheet } from '@/components/filter-sheet'
 import { cn } from '@/lib/utils'
 
 export const Tours = () => {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const { t, i18n } = useTranslation()
     const {
         page,
@@ -130,7 +130,7 @@ export const Tours = () => {
                                 </Link>
                             ))
                         ) : (
-                            <p className='text-3xl font-semibold text-center col-span-full'>
+                            <p className='col-span-full text-center text-3xl font-semibold'>
                                 {t('not_found.tours')}
                             </p>
                         )}

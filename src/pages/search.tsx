@@ -22,7 +22,7 @@ import { useState } from 'react'
 import { CardWithBooking } from '@/components/cards/card-with-booking'
 
 export const Search = () => {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const { t, i18n } = useTranslation()
     const [searchParams] = useSearchParams()
     const place = searchParams.get('place')

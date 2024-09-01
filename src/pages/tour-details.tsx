@@ -38,7 +38,7 @@ export const TourDetails = () => {
     const { t, i18n } = useTranslation()
 
     const { data: tour, isLoading } = useQuery<TourDetailsType>({
-        queryKey: ['tour', id],
+        queryKey: ['trip', id],
         queryFn: async () => {
             return (await api.get(`/api/Package/${id}`)).data
         },
@@ -232,7 +232,7 @@ export const TourDetails = () => {
                     <Overview trip={tour} />
                 </TabsContent>
                 <TabsContent value='reviews' dir={i18n.dir()}>
-                    <Reviews />
+                    <Reviews trip={tour} />
                 </TabsContent>
             </Tabs>
 

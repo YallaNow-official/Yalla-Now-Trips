@@ -103,6 +103,7 @@ export const FilterSheet = ({
                             setSearchParams(searchParams)
                         }}
                         dir={i18n.dir()}
+                        defaultValue={searchParams.get('minRating') ?? ''}
                     >
                         {new Array(5).fill(null).map((_, index) => (
                             <ToggleGroupItem

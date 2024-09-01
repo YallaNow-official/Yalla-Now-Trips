@@ -23,14 +23,8 @@ import { FilterSheet } from '@/components/filter-sheet'
 import { cn } from '@/lib/utils'
 
 export const Trips = () => {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const { t, i18n } = useTranslation()
-    // const { data: trips, isLoading: loadingTrips } = useQuery<Trip[]>({
-    //     queryKey: ['trips'],
-    //     queryFn: async () => {
-    //         return (await api.get('/api/Trip/Filter')).data
-    //     },
-    // })
     const {
         page,
         location,
@@ -143,7 +137,7 @@ export const Trips = () => {
                                 </Link>
                             ))
                         ) : (
-                            <p className='text-3xl font-semibold text-center col-span-full'>
+                            <p className='col-span-full text-center text-3xl font-semibold'>
                                 {t('not_found.trips')}
                             </p>
                         )}
