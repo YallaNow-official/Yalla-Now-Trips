@@ -34,7 +34,7 @@ const isTrip = (
 }
 
 export const Reviews = ({ trip }: ReviewsProps) => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { user } = useUser()
     const queryClient = useQueryClient()
     const [hoverRating, setHoverRating] = useState(0)
@@ -174,7 +174,12 @@ export const Reviews = ({ trip }: ReviewsProps) => {
                                                     type='submit'
                                                     variant={'ghost'}
                                                     size={'icon'}
-                                                    className='absolute right-8 top-1/2 h-auto w-auto -translate-y-1/2 rounded-full bg-[#F5F5F5] p-3'
+                                                    className={cn(
+                                                        'absolute top-1/2 h-auto w-auto -translate-y-1/2 rounded-full bg-[#F5F5F5] p-3',
+                                                        i18n.dir() === 'ltr'
+                                                            ? 'right-8'
+                                                            : 'left-8 -rotate-90',
+                                                    )}
                                                 >
                                                     <Icons.Send className='shrink-0' />
                                                     <span className='sr-only'>
@@ -182,7 +187,9 @@ export const Reviews = ({ trip }: ReviewsProps) => {
                                                     </span>
                                                 </ButtonLoading>
                                                 <Textarea
-                                                    placeholder='Write Review'
+                                                    placeholder={t(
+                                                        'details.write_review',
+                                                    )}
                                                     className='resize-none rounded-2xl border-2 border-[#E8ECEF] px-6 py-4 text-primary-black placeholder:text-primary-black'
                                                     {...field}
                                                 />

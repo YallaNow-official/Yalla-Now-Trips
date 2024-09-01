@@ -239,7 +239,7 @@ export const TripDetails = () => {
             </Tabs>
 
             <section className='pb-16'>
-                <SectionHeader title='Similar Trips' />
+                <SectionHeader title={t('details.similar_trips')} />
                 <GridWrapper gridCols={4}>
                     {similarTrips?.map((trip) => (
                         <Link to={`/trip/${trip.id}`} key={trip.id}>

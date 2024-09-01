@@ -145,6 +145,7 @@ i18n.use(LanguageDetector)
                         similar_trips: 'Similar Trips',
                         reviews: 'Reviews',
                         customer_reviews: 'Customer Reviews',
+                        write_review: 'Write Review',
                     },
                     booking: {
                         title: 'Booking',
@@ -345,6 +346,7 @@ i18n.use(LanguageDetector)
                         similar_trips: 'رحلات مماثلة',
                         reviews: 'التقييمات',
                         customer_reviews: 'تقييمات العملاء',
+                        write_review: 'كتابة تقييم',
                     },
                     booking: {
                         title: 'الحجز',

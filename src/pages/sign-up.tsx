@@ -14,6 +14,7 @@ import { Separator } from '@/components/ui/separator'
 import { api } from '@/lib/api'
 import { registerSchema, type RegisterSchema } from '@/lib/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useGoogleLogin } from '@react-oauth/google'
 import { isAxiosError } from 'axios'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
@@ -35,6 +36,45 @@ export const SignUp = () => {
             lastName: '',
             phoneNumber: '',
             username: '',
+        },
+    })
+
+    const register = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                await api.post('/api/Google/GoogleSignUp', {
+                    externalAuthDto: {
+                        provider: 'Google',
+                        idToken: tokenResponse.access_token,
+                    },
+                    gender: 'male',
+                    phoneNumber: 'phone',
+                    password: 'password',
+                })
+                toast.success(t('success.register'))
+                navigate('/sign-in')
+            } catch (error) {
+                if (isAxiosError(error)) {
+                    switch (error.status) {
+                        case 400:
+                            toast.error(
+                                error.response?.data ||
+                                    t('error.something_wrong'),
+                            )
+                            break
+                        case 500:
+                            toast.error(t('error.internal_server_error'))
+                            break
+                    }
+
+                    return
+                }
+
+                toast.error(t('error.unexpected_error'))
+            }
+        },
+        onError: (error) => {
+            toast.error(error.error_description || t('error.something_wrong'))
         },
     })
 
@@ -72,7 +112,7 @@ export const SignUp = () => {
     }
 
     return (
-        <div className='flex flex-col gap-6 px-8 pt-6 pb-8' dir={i18n.dir()}>
+        <div className='flex flex-col gap-6 px-8 pb-8 pt-6' dir={i18n.dir()}>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -176,7 +216,7 @@ export const SignUp = () => {
                                         />
                                         <button
                                             type='button'
-                                            className='absolute -translate-y-1/2 right-4 top-1/2'
+                                            className='absolute right-4 top-1/2 -translate-y-1/2'
                                             onClick={() =>
                                                 setIsPasswordVisible(
                                                     (prev) => !prev,
@@ -245,7 +285,7 @@ export const SignUp = () => {
                         variant={'primary'}
                         isLoading={form.formState.isSubmitting}
                     >
-                        <span className='text-sm font-bold text-white uppercase'>
+                        <span className='text-sm font-bold uppercase text-white'>
                             {t('auth.sign_up')}
                         </span>
                     </ButtonLoading>
@@ -255,14 +295,15 @@ export const SignUp = () => {
             <div className='flex flex-col gap-3'>
                 <div className='relative'>
                     <Separator className='bg-light-gray' />
-                    <span className='absolute px-2 text-sm text-gray-500 -translate-x-1/2 -translate-y-1/2 bg-white -top-2/3 left-1/2'>
+                    <span className='absolute -top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm text-gray-500'>
                         or
                     </span>
                 </div>
 
                 <Button
-                    className='relative w-full h-auto py-3 rounded-xs border-light-gray'
+                    className='relative h-auto w-full rounded-xs border-light-gray py-3'
                     variant={'outline'}
+                    onClick={() => register()}
                 >
                     <img src='Google.svg' className='absolute left-4' />
                     <span className='text-sm font-normal text-gray-700'>

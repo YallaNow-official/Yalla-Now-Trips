@@ -20,6 +20,8 @@ import { isAxiosError } from 'axios'
 import { toast } from 'sonner'
 import { ButtonLoading } from '@/components/ui/button-loading'
 import { useTranslation } from 'react-i18next'
+import { useGoogleLogin } from '@react-oauth/google'
+import { cn } from '@/lib/utils'
 
 export const SignIn = () => {
     const { t, i18n } = useTranslation()
@@ -29,6 +31,41 @@ export const SignIn = () => {
         defaultValues: {
             email: '',
             password: '',
+        },
+    })
+
+    const login = useGoogleLogin({
+        onSuccess: async (tokenResponse) => {
+            try {
+                const res = await api.post('/api/Google/ExternalLogin', {
+                    provider: 'Google',
+                    idToken: tokenResponse.access_token,
+                })
+                const { token } = res.data
+                localStorage.setItem('token', token)
+                window.location.reload()
+            } catch (error) {
+                if (isAxiosError(error)) {
+                    switch (error.status) {
+                        case 400:
+                            toast.error(
+                                error.response?.data ||
+                                    t('error.something_wrong'),
+                            )
+                            break
+                        case 500:
+                            toast.error(t('error.internal_server_error'))
+                            break
+                    }
+
+                    return
+                }
+
+                toast.error(t('error.unexpected_error'))
+            }
+        },
+        onError: (error) => {
+            toast.error(error.error_description || t('error.something_wrong'))
         },
     })
 
@@ -54,9 +91,7 @@ export const SignIn = () => {
                             .map((error: string) => toast.error(error))
                     }
 
-                    return toast.error(
-                        'Something went wrong, please check your inputs',
-                    )
+                    return toast.error(t('error.something_wrong'))
                 }
 
                 return toast.error(error.message)
@@ -71,7 +106,7 @@ export const SignIn = () => {
     }
 
     return (
-        <div className='flex flex-col gap-6 px-8 pt-6 pb-8' dir={i18n.dir()}>
+        <div className='flex flex-col gap-6 px-8 pb-8 pt-6' dir={i18n.dir()}>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -126,7 +161,12 @@ export const SignIn = () => {
                                         />
                                         <button
                                             type='button'
-                                            className='absolute -translate-y-1/2 right-4 top-1/2'
+                                            className={cn(
+                                                'absolute top-1/2 -translate-y-1/2',
+                                                i18n.dir() === 'ltr'
+                                                    ? 'right-4'
+                                                    : 'left-4',
+                                            )}
                                             onClick={() =>
                                                 setIsPasswordVisible(
                                                     (prev) => !prev,
@@ -152,7 +192,7 @@ export const SignIn = () => {
                         variant={'primary'}
                         isLoading={form.formState.isSubmitting}
                     >
-                        <span className='text-sm font-bold text-white uppercase'>
+                        <span className='text-sm font-bold uppercase text-white'>
                             {t('auth.sign_in')}
                         </span>
                     </ButtonLoading>
@@ -162,15 +202,17 @@ export const SignIn = () => {
             <div className='flex flex-col gap-3'>
                 <div className='relative'>
                     <Separator className='bg-light-gray' />
-                    <span className='absolute px-2 text-sm text-gray-500 -translate-x-1/2 -translate-y-1/2 bg-white -top-2/3 left-1/2'>
+                    <span className='absolute -top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm text-gray-500'>
                         {t('auth.or')}
                     </span>
                 </div>
 
                 <Button
-                    className='w-full h-auto py-3 rounded-xs border-light-gray'
+                    className='relative h-auto w-full rounded-xs border-light-gray py-3'
                     variant={'outline'}
+                    onClick={() => login()}
                 >
+                    <img src='Google.svg' className='absolute left-4' />
                     <span className='text-sm font-normal text-gray-700'>
                         {t('auth.google_login')}
                     </span>
