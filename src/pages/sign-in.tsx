@@ -39,7 +39,7 @@ export const SignIn = () => {
                 password: data.password,
             })
 
-            toast.success('Login successful')
+            toast.success(t('success.login'))
             const { token } = res.data
             localStorage.setItem('token', token)
             window.location.reload()
@@ -66,7 +66,7 @@ export const SignIn = () => {
                 return toast.error(error.message)
             }
 
-            return toast.error('An unexpected error occurred')
+            return toast.error(t('error.unexpected_error'))
         }
     }
 

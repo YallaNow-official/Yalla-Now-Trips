@@ -83,7 +83,7 @@ export const BookingCheckout = () => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Booking submitted successfully')
+            toast.success(t('success.booking'))
             navigate('/', {
                 replace: true,
             })
@@ -95,16 +95,16 @@ export const BookingCheckout = () => {
                         handleValidationError(err)
                         break
                     case 401:
-                        toast.error('You need to login first')
+                        toast.error(t('error.unauthorized'))
                         break
                     case 404:
-                        toast.error('Trip not found')
+                        toast.error(t('error.trip_not_found'))
                         break
                     default:
-                        toast.error('An error occurred, please try again later')
+                        toast.error(t('error.error_occurred'))
                 }
             } else {
-                toast.error('An error occurred, please try again later')
+                toast.error(t('error.error_occurred'))
             }
         },
     })

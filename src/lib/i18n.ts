@@ -191,6 +191,28 @@ i18n.use(LanguageDetector)
                         gender: 'Gender',
                         or: 'or',
                     },
+                    success: {
+                        contact: 'Your message has been sent successfully',
+                        review_submitted: 'Review submitted successfully',
+                        request_booking:
+                            'Your request has been submitted successfully',
+                        booking: 'Booking submitted successfully',
+                        hotel: 'Your booking has been submitted successfully',
+                        login: 'Login successful',
+                        register: 'Account created successfully',
+                    },
+                    error: {
+                        invalid_data: 'Invalid data, please try again',
+                        unauthorized: 'You need to login first',
+                        something_wrong:
+                            'Something went wrong, please try again later',
+                        unexpected_error: 'An unexpected error occurred',
+                        trip_not_found: 'Trip not found',
+                        error_occurred:
+                            'An error occurred, please try again later',
+                        internal_server_error:
+                            'Internal server error, please try again later',
+                    },
                 },
             },
             ar: {
@@ -368,6 +390,29 @@ i18n.use(LanguageDetector)
                         phone_number: 'رقم الهاتف',
                         gender: 'الجنس',
                         or: 'أو',
+                    },
+                    success: {
+                        contact: 'تم إرسال رسالتك بنجاح',
+                        review_submitted: 'تم تقديم التقييم بنجاح',
+                        request_booking: 'تم إرسال طلبك بنجاح',
+                        booking: 'تم تقديم الحجز بنجاح',
+                        hotel: 'تم تقديم حجزك بنجاح',
+                        login: 'تم تسجيل الدخول بنجاح',
+                        register: 'تم إنشاء الحساب بنجاح',
+                    },
+                    error: {
+                        invalid_data:
+                            'بيانات غير صالحة، يرجى المحاولة مرة أخرى',
+                        unauthorized:
+                            'يجب عليك تسجيل الدخول أولاً لتقديم تقييم',
+                        something_wrong:
+                            'حدث خطأ ما، يرجى المحاولة مرة أخرى في وقت لاحق',
+                        unexpected_error: 'حدث خطأ غير متوقع',
+                        trip_not_found: 'الرحلة غير موجودة',
+                        error_occurred:
+                            'حدث خطأ، يرجى المحاولة مرة أخرى في وقت لاحق',
+                        internal_server_error:
+                            'خطأ في الخادم الداخلي، يرجى المحاولة مرة أخرى في وقت لاحق',
                     },
                 },
             },

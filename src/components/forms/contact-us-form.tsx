@@ -44,7 +44,7 @@ export const ContactUsForm = () => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Your request has been submitted successfully')
+            toast.success(t('success.contact'))
         },
         onError: (err) => {
             if (isAxiosError(err)) {
@@ -54,21 +54,19 @@ export const ContactUsForm = () => {
                         break
                     case 404:
                         toast.error(
-                            err.response?.data ?? 'Something went wrong',
+                            err.response?.data ?? t('error.something_wrong'),
                         )
                         break
                     case 500:
-                        toast.error(
-                            'Internal server error, please try again later',
-                        )
+                        toast.error(t('error.internal_server_error'))
                         break
                     default:
-                        toast.error('An error occurred, please try again later')
+                        toast.error(t('error.error_occurred'))
                         break
                 }
                 return
             }
-            toast.error('An error occurred, please try again later')
+            toast.error(t('error.error_occurred'))
         },
     })
 
@@ -236,7 +234,7 @@ export const ContactUsForm = () => {
                     <ButtonLoading
                         type='submit'
                         variant={'primary'}
-                        className='h-fit w-fit rounded-sm px-8 py-4'
+                        className='px-8 py-4 rounded-sm h-fit w-fit'
                         isLoading={isPending}
                     >
                         <span className='text-base font-semibold text-white'>

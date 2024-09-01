@@ -63,7 +63,7 @@ export const Airplane = () => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Your request has been submitted successfully')
+            toast.success(t('success.request_booking'))
         },
         onError: (err) => {
             if (isAxiosError(err)) {
@@ -72,19 +72,17 @@ export const Airplane = () => {
                         handleValidationError(err)
                         break
                     case 401:
-                        toast.error('You need to login first')
+                        toast.error(t('error.unauthorized'))
                         break
                     default:
-                        toast.error(
-                            'Something went wrong, please try again later',
-                        )
+                        toast.error(t('error.something_wrong'))
                         break
                 }
 
                 return
             }
 
-            toast.error('Something went wrong, please try again later')
+            toast.error(t('error.something_wrong'))
         },
     })
 

@@ -63,7 +63,7 @@ export const Reviews = ({ trip }: ReviewsProps) => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Review submitted successfully')
+            toast.success(t('success.review_submitted'))
             queryClient.invalidateQueries({
                 exact: true,
                 queryKey: ['trip', trip?.id],
@@ -73,23 +73,19 @@ export const Reviews = ({ trip }: ReviewsProps) => {
             if (isAxiosError(err)) {
                 switch (err.status) {
                     case 400:
-                        toast.error('Invalid data, please try again')
+                        toast.error(t('error.invalid_data'))
                         break
                     case 401:
-                        toast.error(
-                            'You need to login first to submit a review',
-                        )
+                        toast.error(t('error.unauthorized'))
                         break
                     default:
-                        toast.error(
-                            'Something went wrong, please try again later',
-                        )
+                        toast.error(t('error.something_wrong'))
                         break
                 }
                 return
             }
 
-            toast.error('Something went wrong, please try again later')
+            toast.error(t('error.something_wrong'))
         },
     })
 

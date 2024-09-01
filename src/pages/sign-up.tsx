@@ -42,7 +42,7 @@ export const SignUp = () => {
         try {
             await api.post('/api/Auth/RegisterNewUser', data)
 
-            toast.success('Account created successfully')
+            toast.success(t('success.register'))
             navigate('/sign-in')
         } catch (error) {
             if (isAxiosError(error)) {
@@ -67,12 +67,12 @@ export const SignUp = () => {
                 return toast.error(error.message)
             }
 
-            return toast.error('An unexpected error occurred')
+            return toast.error(t('error.unexpected_error'))
         }
     }
 
     return (
-        <div className='flex flex-col gap-6 px-8 pb-8 pt-6' dir={i18n.dir()}>
+        <div className='flex flex-col gap-6 px-8 pt-6 pb-8' dir={i18n.dir()}>
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -176,7 +176,7 @@ export const SignUp = () => {
                                         />
                                         <button
                                             type='button'
-                                            className='absolute right-4 top-1/2 -translate-y-1/2'
+                                            className='absolute -translate-y-1/2 right-4 top-1/2'
                                             onClick={() =>
                                                 setIsPasswordVisible(
                                                     (prev) => !prev,
@@ -245,7 +245,7 @@ export const SignUp = () => {
                         variant={'primary'}
                         isLoading={form.formState.isSubmitting}
                     >
-                        <span className='text-sm font-bold uppercase text-white'>
+                        <span className='text-sm font-bold text-white uppercase'>
                             {t('auth.sign_up')}
                         </span>
                     </ButtonLoading>
@@ -255,13 +255,13 @@ export const SignUp = () => {
             <div className='flex flex-col gap-3'>
                 <div className='relative'>
                     <Separator className='bg-light-gray' />
-                    <span className='absolute -top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm text-gray-500'>
+                    <span className='absolute px-2 text-sm text-gray-500 -translate-x-1/2 -translate-y-1/2 bg-white -top-2/3 left-1/2'>
                         or
                     </span>
                 </div>
 
                 <Button
-                    className='relative h-auto w-full rounded-xs border-light-gray py-3'
+                    className='relative w-full h-auto py-3 rounded-xs border-light-gray'
                     variant={'outline'}
                 >
                     <img src='Google.svg' className='absolute left-4' />

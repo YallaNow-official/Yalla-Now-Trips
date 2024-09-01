@@ -96,7 +96,7 @@ export const TripPlanner = () => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Your request has been submitted successfully')
+            toast.success(t('success.request_booking'))
         },
         onError: (err) => {
             if (isAxiosError(err)) {
@@ -105,25 +105,23 @@ export const TripPlanner = () => {
                         handleValidationError(err)
                         break
                     case 401:
-                        toast.error('You need to login first')
+                        toast.error(t('error.unauthorized'))
                         break
                     case 404:
                         toast.error(
-                            err.response?.data ?? 'Something went wrong',
+                            err.response?.data ?? t('error.something_wrong'),
                         )
                         break
                     case 500:
-                        toast.error(
-                            'Internal server error, please try again later',
-                        )
+                        toast.error(t('error.internal_server_error'))
                         break
                     default:
-                        toast.error('An error occurred, please try again later')
+                        toast.error(t('error.error_occurred'))
                         break
                 }
                 return
             }
-            toast.error('An error occurred, please try again later')
+            toast.error(t('error.error_occurred'))
         },
     })
 
@@ -145,7 +143,7 @@ export const TripPlanner = () => {
 
     return (
         <main className='relative' dir={i18n.dir()}>
-            <div className='container absolute left-1/2 h-full max-h-96 -translate-x-1/2 pb-20 pt-4'>
+            <div className='container absolute h-full pt-4 pb-20 -translate-x-1/2 left-1/2 max-h-96'>
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -175,7 +173,7 @@ export const TripPlanner = () => {
                     </BreadcrumbList>
                 </Breadcrumb>
 
-                <div className='flex h-full flex-col justify-center'>
+                <div className='flex flex-col justify-center h-full'>
                     <h1 className='text-[2rem] font-bold leading-normal text-white'>
                         {t('trip_planner.title')}
                     </h1>
@@ -187,17 +185,17 @@ export const TripPlanner = () => {
             </div>
 
             <img
-                className='h-96 w-full object-cover'
+                className='object-cover w-full h-96'
                 src='/banners/trip-planner.png'
                 alt='Hotels'
             />
 
-            <div className='container space-y-6 pb-28 pt-12'>
+            <div className='container pt-12 space-y-6 pb-28'>
                 <div className='space-y-4'>
                     <h2 className='text-[2rem] font-semibold text-gray-900'>
                         {t('trip_planner.title')}
                     </h2>
-                    <p className='max-w-screen-md text-balance text-gray-600'>
+                    <p className='max-w-screen-md text-gray-600 text-balance'>
                         {t('common.contact_soon')}
                     </p>
                 </div>
@@ -334,11 +332,11 @@ export const TripPlanner = () => {
                                                     ) : (
                                                         <span>Pick a date</span>
                                                     )}
-                                                    <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                                                    <CalendarIcon className='w-4 h-4 ml-auto opacity-50' />
                                                 </Button>
                                             </PopoverTrigger>
                                             <PopoverContent
-                                                className='flex w-auto flex-col rounded-lg border-none p-0'
+                                                className='flex flex-col w-auto p-0 border-none rounded-lg'
                                                 align='start'
                                             >
                                                 <div className='flex flex-col rounded-t-lg bg-primary-red px-3.5 py-2 font-bold text-white'>
@@ -399,11 +397,11 @@ export const TripPlanner = () => {
                                                     ) : (
                                                         <span>Pick a date</span>
                                                     )}
-                                                    <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                                                    <CalendarIcon className='w-4 h-4 ml-auto opacity-50' />
                                                 </Button>
                                             </PopoverTrigger>
                                             <PopoverContent
-                                                className='flex w-auto flex-col rounded-lg border-none p-0'
+                                                className='flex flex-col w-auto p-0 border-none rounded-lg'
                                                 align='start'
                                             >
                                                 <div className='flex flex-col rounded-t-lg bg-primary-red px-3.5 py-2 font-bold text-white'>
@@ -624,7 +622,7 @@ export const TripPlanner = () => {
 
                         <ButtonLoading
                             type='submit'
-                            className='mt-3 h-14 w-fit rounded-sm bg-primary-orange px-8'
+                            className='px-8 mt-3 rounded-sm h-14 w-fit bg-primary-orange'
                             isLoading={isPending}
                         >
                             <span className='text-base font-bold uppercase tracking-[0.012em] text-white'>

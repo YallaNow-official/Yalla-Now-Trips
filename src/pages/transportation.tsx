@@ -86,7 +86,7 @@ export const Transportation = () => {
         },
         onSuccess: () => {
             form.reset()
-            toast.success('Your request has been submitted successfully')
+            toast.success(t('success.request_booking'))
         },
         onError: (err) => {
             if (isAxiosError(err)) {
@@ -95,20 +95,18 @@ export const Transportation = () => {
                         handleValidationError(err)
                         break
                     case 401:
-                        toast.error('You need to login first')
+                        toast.error(t('error.unauthorized'))
                         break
                     case 500:
-                        toast.error(
-                            'Internal server error, please try again later',
-                        )
+                        toast.error(t('error.internal_server_error'))
                         break
                     default:
-                        toast.error('An error occurred, please try again later')
+                        toast.error(t('error.error_occurred'))
                         break
                 }
                 return
             }
-            toast.error('An error occurred, please try again later')
+            toast.error(t('error.error_occurred'))
         },
     })
 
