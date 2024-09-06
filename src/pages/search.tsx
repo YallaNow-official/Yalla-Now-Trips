@@ -102,6 +102,7 @@ export const Search = () => {
                             trips.items?.map((trip) => (
                                 <Link to={`/trip/${trip.id}`} key={trip.id}>
                                     <CardWithBooking
+                                        id={trip.id}
                                         imageUrl={trip.mainImageUrl}
                                         title={trip.title}
                                         subTitle={trip.destination}
