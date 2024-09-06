@@ -49,12 +49,9 @@ export const CardWithBooking = ({
                 </div>
                 <div className='relative text-sm line-clamp-2'>
                     <span className='text-gray-900'>{subTitle}</span>
-                    <Link
-                        to={`/tour/${id}`}
-                        className='absolute bottom-0 right-0 px-1 bg-white text-primary-red'
-                    >
+                    <span className='absolute bottom-0 right-0 px-1 bg-white text-primary-red'>
                         Read more...
-                    </Link>
+                    </span>
                 </div>
                 <div className='flex gap-4 pt-4 pb-3 lg:gap-8'>
                     <div className='flex items-center gap-2 lg:gap-5'>
