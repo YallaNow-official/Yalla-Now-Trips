@@ -35,7 +35,7 @@ export const CardWithBooking = ({
                 alt='card'
                 className='aspect-[1.23/1] h-full w-full min-w-[19rem] rounded-lg object-cover sm:max-w-80'
             />
-            <div className='flex w-full grow flex-col px-6 py-4 lg:px-8 lg:py-6'>
+            <div className='flex flex-col w-full px-6 py-4 grow lg:px-8 lg:py-6'>
                 <span className='pb-2.5 text-xl font-semibold text-primary-black'>
                     {title}
                 </span>
@@ -47,16 +47,16 @@ export const CardWithBooking = ({
                         {rating} {t('details.star_rating')}
                     </span>
                 </div>
-                <div className='relative line-clamp-2 text-sm'>
+                <div className='relative text-sm line-clamp-2'>
                     <span className='text-gray-900'>{subTitle}</span>
                     <Link
-                        to={`/tour/id`}
-                        className='absolute bottom-0 right-0 bg-white px-1 text-primary-red'
+                        to={`/tour/${id}`}
+                        className='absolute bottom-0 right-0 px-1 bg-white text-primary-red'
                     >
                         Read more...
                     </Link>
                 </div>
-                <div className='flex gap-4 pb-3 pt-4 lg:gap-8'>
+                <div className='flex gap-4 pt-4 pb-3 lg:gap-8'>
                     <div className='flex items-center gap-2 lg:gap-5'>
                         <Icons.Location className='size-6' />
                         <span className='text-sm font-medium text-dark-gray'>
